@@ -1,12 +1,10 @@
-import Link from 'next/link'
+import Link from "../src/components/Link";
 
 export default function FAQPage() {
-    return (
-        <div>
-            <h1>Alura Cases - FAQ</h1>
-            <Link href="/index">
-                <a>Home</a>
-            </Link>
-        </div>
-    )
+  return (
+    <div>
+      <h1>Alura Cases - FAQ</h1>
+      <Link href="/">Go to Home page</Link>
+    </div>
+  );
 }
