@@ -1,31 +1,28 @@
-import { useEffect, useState } from "react";
 import Link from "../src/components/Link";
+import Head from "next/head";
+import PageTitle from "../src/components/PageTitle";
 
 export async function getStaticProps(context) {
+  const FAQ_API_URL =
+    "https://gist.githubusercontent.com/omariosouto/0ceab54bdd8182cbd1a4549d32945c1a/raw/578ad1e8e5296fa048e3e7ff6b317f7497b31ad9/alura-cases-faq.json";
+  const faq = await fetch(FAQ_API_URL)
+    .then((serverResponse) => {
+      return serverResponse.json();
+    })
+    .then((response) => {
+      return response;
+    });
   return {
-    props: {},
+    props: { faq },
   };
 }
 
-export default function FAQPage(props) {
-  const [faq, setFaq] = useState([]);
-  useEffect(() => {
-    const FAQ_API_URL =
-      "https://gist.githubusercontent.com/omariosouto/0ceab54bdd8182cbd1a4549d32945c1a/raw/578ad1e8e5296fa048e3e7ff6b317f7497b31ad9/alura-cases-faq.json";
-    fetch(FAQ_API_URL)
-      .then((serverResponse) => {
-        return serverResponse.json();
-      })
-      .then((response) => {
-        setFaq(response);
-      });
-  }, []);
-
+export default function FAQPage({ faq }) {
   return (
     <div>
+      <PageTitle>FAQ - Alura Cases</PageTitle>
       <h1>Alura Cases - FAQ</h1>
       <ul>
-        qw
         {faq.map(({ answer, question }) => (
           <li key={question}>
             <article>
